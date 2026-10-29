@@ -1,0 +1,56 @@
+FRONTIERSWE / HARBOR TASK SAMPLES
+Validation date: 28 October 2026 (America/Chicago)
+
+meridian-store
+==============
+FSWE-CHECK v1 PASS samples/meridian-store 2ed8799e2988
+Harbor oracle Mean: 1.000 (1 trial; 0 exceptions)
+Harbor nop Mean: 0.000 (1 trial; 0 exceptions)
+Local correctness: 6/6 groups; 7198/7198 assertions passed.
+Negative controls: 11/11 representative defects detected.
+Agent budget: 72000 seconds (20 hours); 2 CPUs; 2048 MiB RAM.
+oracle job: meridian-oracle-final / 5e016057-b787-4aad-b267-510d0b5d5099
+nop job: meridian-nop-final / b18547b4-3a64-4cfb-969c-eb555bd2a6d9
+Reproduce: python frontierswe-check.py meridian-store
+Reproduce: harbor run -p meridian-store -a oracle
+Reproduce: harbor run -p meridian-store -a nop
+
+artifact-broker
+===============
+FSWE-CHECK v1 PASS samples/artifact-broker 2951f3c1168a
+Harbor oracle Mean: 1.000 (1 trial; 0 exceptions)
+Harbor nop Mean: 0.000 (1 trial; 0 exceptions)
+Local correctness: 6/6 groups; 253/253 assertions passed.
+Negative controls: 14/14 representative defects detected.
+Agent budget: 72000 seconds (20 hours); 2 CPUs; 2048 MiB RAM.
+oracle job: broker-oracle-final / c284a57a-06a2-49a4-8893-3004307ad3fb
+nop job: broker-nop-final / eb56fd2a-7f7e-4f43-941d-88debe8e1592
+Reproduce: python frontierswe-check.py artifact-broker
+Reproduce: harbor run -p artifact-broker -a oracle
+Reproduce: harbor run -p artifact-broker -a nop
+
+rivet-views
+===========
+FSWE-CHECK v1 PASS samples/rivet-views 924fe1214b20
+Harbor oracle Mean: 1.000 (1 trial; 0 exceptions)
+Harbor nop Mean: 0.000 (1 trial; 0 exceptions)
+Local correctness: 6/6 groups; 1455/1455 assertions passed.
+Negative controls: 12/12 representative defects detected.
+Agent budget: 72000 seconds (20 hours); 2 CPUs; 2048 MiB RAM.
+oracle job: rivet-oracle-final / 90362364-a9b1-4b66-a77b-81adec0bc439
+nop job: rivet-nop-final / f759799f-53be-4bd6-a47b-341afd43d7fd
+Reproduce: python frontierswe-check.py rivet-views
+Reproduce: harbor run -p rivet-views -a oracle
+Reproduce: harbor run -p rivet-views -a nop
+
+Validation scope
+The checker, oracle and nop runs are executed checks. The local correctness
+review passes 18/18 groups across the three tasks. Negative controls are hand-
+edited faulty implementations, not blind solver attempts. No independent
+model difficulty calibration has been run; the 20-hour budget is a cap,
+not a measured completion time. Crash checks model process death and
+interrupted writes, not a physical power-loss experiment.
+
+Unzip a task archive to get its complete task folder. The combined archive
+contains all three folders and this sheet. Keep solution/ and tests/ for the
+evaluator; Docker build contexts expose only environment/starter/.
